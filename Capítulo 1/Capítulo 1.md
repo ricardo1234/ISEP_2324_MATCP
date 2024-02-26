@@ -154,3 +154,72 @@ print(f"A soma dos valores da terceira coluna é {soma}")
 
 print(f"O menor valor da segunda linha é {min(matriz[1])}")
 ```
+
+## Exercício 8
+``` python
+Alunos = []
+
+while input('Quer continuar? [S/N] ') == 'S':
+    Alunos.append([int(input('Numero: ')), input('Nome: '), float(input('Nota 1: ')), float(input('Nota 2: '))])
+
+print("Numero\tNome\tNota 1\tNota 2\tMedia")
+
+for i in range(len(Alunos)):
+    print(f'{Alunos[i][0]}\t{Alunos[i][1]}\t{Alunos[i][2]}\t{Alunos[i][3]}\t{(Alunos[i][2] + Alunos[i][3])/2:.2f}')
+
+while True:
+    n = int(input('Nº Aluno: '))
+    if n == 0:
+        break
+    print(f'Numero\tNome\tNota 1\tNota 2\tMedia')
+    for i in range(len(Alunos)):
+        if Alunos[i][0] == n:
+            print(f'{Alunos[i][0]}\t{Alunos[i][1]}\t{Alunos[i][2]}\t{Alunos[i][3]}\t{(Alunos[i][2] + Alunos[i][3])/2:.2f}')
+            break
+    else:
+        print('Aluno não encontrado')
+
+```
+
+## Exercício 9
+
+``` python
+def contador(inicio, fim, passo):
+    if passo == 0:
+        passo = 1
+    if passo < 0:
+        passo *= -1
+    if fim < inicio:
+        fim, inicio = inicio, fim
+    for c in range(inicio, fim + 1, passo):
+        print(f"{c}", end=" ")
+    print("")
+contador(1, 10, 1)
+contador(10, 0, -2)
+contador(10, 100, 3)
+```
+
+## Exercício 10
+
+``` python
+def maior(*numeros):
+    if len(numeros) == 0:
+        return 0
+    maior = numeros[0]
+    for valor in numeros:
+        if valor > maior:
+            maior = valor
+    return maior
+
+numeros = []
+
+while True:
+    valor = int(input("Digite um valor [0 - sair, -1 - nova lista]: "))
+    if valor == 0:
+        break
+    if valor == -1:
+        print(f"o maior numero é {maior(*numeros)}")
+        numeros.clear()
+        continue
+    numeros.append(valor)
+```

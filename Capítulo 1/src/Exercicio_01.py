@@ -12,4 +12,3 @@ if valorPrestacao > salario * 0.3:
 else:
     print("Empréstimo aprovado")
     print(f"Valor da prestação: {valorPrestacao:.2f}€")
-    

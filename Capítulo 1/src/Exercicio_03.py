@@ -1,5 +1,3 @@
-# 3. Implemente o jogo ”Pedra, papel, tesoura”, em que o utizaizador joga contra o computador. O programa dever´a fazer 10 jogadas e indicar a percentagem de vit´orias do utilizador.
-
 import random
 
 jogadas = 0
