@@ -20,7 +20,7 @@ else:
     print("Empréstimo aprovado")
     print(f"Valor da prestação: {valorPrestacao:.2f}€")
 ```
-
+[Source Code](src/Exercicio_01.py)
 ## Exercício 2
 ``` python
 valorCompra = float(input("Digite o valor da compra: "))
@@ -38,7 +38,7 @@ elif tipoPagamento == "C":
 else:
     print("Tipo de pagamento inválido")
 ```
-
+[Source Code](src/Exercicio_02.py)
 ## Exercício 3
 ``` python
 import random
@@ -63,8 +63,7 @@ while jogadas < 10:
 
 print(f"Percentagem de vitórias: {vitorias / 10 * 100:.2f}%")
 ```
-
-
+[Source Code](src/Exercicio_03.py)
 ## Exercício 4
 ``` python
 listNumero = []
@@ -89,7 +88,7 @@ print(f"O menor valor digitado foi #{posicaoMenor} {menor}")
 
 print(listNumero)
 ```
-
+[Source Code](src/Exercicio_04.py)
 ## Exercício 5
 ``` python
 listNumero = []
@@ -104,7 +103,7 @@ for i in range(5):
     listNumero.insert(index, numero)
     print(listNumero)
 ```
-
+[Source Code](src/Exercicio_05.py)
 ## Exercício 6
 ``` python
 lista = [[],[]]
@@ -122,9 +121,8 @@ lista[1].sort(reverse = True)
 
 print(f"Os valores pares são: {lista}")
 ```
-
+[Source Code](src/Exercicio_06.py)
 ## Exercício 7
-
 ``` python
 import numpy as np
 
@@ -154,7 +152,7 @@ print(f"A soma dos valores da terceira coluna é {soma}")
 
 print(f"O menor valor da segunda linha é {min(matriz[1])}")
 ```
-
+[Source Code](src/Exercicio_07.py)
 ## Exercício 8
 ``` python
 Alunos = []
@@ -180,9 +178,8 @@ while True:
         print('Aluno não encontrado')
 
 ```
-
+[Source Code](src/Exercicio_08.py)
 ## Exercício 9
-
 ``` python
 def contador(inicio, fim, passo):
     if passo == 0:
@@ -198,9 +195,8 @@ contador(1, 10, 1)
 contador(10, 0, -2)
 contador(10, 100, 3)
 ```
-
+[Source Code](src/Exercicio_09.py)
 ## Exercício 10
-
 ``` python
 def maior(*numeros):
     if len(numeros) == 0:
@@ -223,3 +219,128 @@ while True:
         continue
     numeros.append(valor)
 ```
+[Source Code](src/Exercicio_10.py)
+## Exercício 11
+``` python
+import random
+
+def caraCroa():
+    if random.random() < 0.5:
+        return "Cara"
+    return "Coroa"
+
+def testGame(n):
+    coroas = 0
+    for i in range(n):
+        if caraCroa() == "Coroa":
+            coroas += 1
+    print(f"O numero de caras foi {coroas} que corresponde a {(coroas/n*100):.2f}%")
+
+testGame(10)
+testGame(100)
+testGame(1000)
+testGame(10000)
+testGame(100000)
+```
+[Source Code](src/Exercicio_11.py)
+### Resultados
+	O numero de caras foi 6 que corresponde a 60.00%
+	O numero de caras foi 47 que corresponde a 47.00%
+	O numero de caras foi 470 que corresponde a 47.00%
+	O numero de caras foi 5043 que corresponde a 50.43%
+	O numero de caras foi 50268 que corresponde a 50.27%
+
+Podemos observar que valor teórico não foi obtido nenhuma vez, mas quanto maior o numero de iterações, mais o valor real se aproxima do teórico. 
+## Exercício 12
+``` python
+import random
+
+def jogar():
+    for i in range(4):
+        numero = random.randint(1, 6)
+        if numero == 6:
+            return True
+    return False
+
+def jogarXvezes(n):
+    vitorias = 0
+    for i in range(n):
+        if jogar():
+            vitorias += 1
+    return vitorias
+
+def estatistica(n):
+    vitorias = jogarXvezes(n)
+    print(f'Vitorias: {vitorias}\t\tProbabilidade: {vitorias / n * 100:.2f}%')
+
+estatistica(100)
+estatistica(1000)
+estatistica(10000)
+estatistica(100000)
+```
+[Source Code](src/Exercicio_12.py)
+
+### Resultados
+	Vitorias: 48            Probabilidade: 48.00%
+	Vitorias: 530           Probabilidade: 53.00%
+	Vitorias: 5163          Probabilidade: 51.63%
+	Vitorias: 51815         Probabilidade: 51.81%
+
+
+X: De não sair 6 em 4 jogadas 
+$P(X) = \frac{5}{6}*\frac{5}{6}*\frac{5}{6}*\frac{5}{6}=0.4822 \Leftrightarrow48.22\%$
+Logo a probabilidade de sair pelo menos um 6 em 4 jogadas é de: $1-P(X) = 1-0.4822=0.5178 \Leftrightarrow51.78\%$ 
+Mais uma vez quanto maior o numero mais se aproxima do valor teorico.
+
+## Exercício 12
+``` python
+import random
+
+Artimanhas = 0.05
+Bombom = 0.2
+Caramelo = 0.25
+Diluvio = 0.5
+
+def corrida():
+    prob = random.random()
+    if prob < Artimanhas:
+        return "Artimanhas"
+    elif prob < Artimanhas + Bombom:
+        return "Bombom"
+    elif prob < Artimanhas + Bombom + Caramelo:
+        return "Caramelo"
+    elif prob < Artimanhas + Bombom + Caramelo + Diluvio:
+        return "Diluvio"
+    else:
+        return "Nada"
+
+def campeonato(n):
+    campeonato = []
+    for i in range(n):
+        campeonato.append(corrida())
+    return campeonato
+
+def statsCampeonato(n):
+    resultados = campeonato(n)
+    print(f"{n}\t\t{resultados.count('Artimanhas')/n*100:.2f}%\t\t{resultados.count('Bombom')/n*100:.2f}%\t\t{resultados.count('Caramelo')/n*100:.2f}%\t\t{resultados.count('Diluvio')/n*100:.2f}")
+
+print("Nº Jogadas\tArtimanhas\tBomba\t\tCaramelo\tDiluvio")
+statsCampeonato(100)
+statsCampeonato(1000)
+statsCampeonato(10000)
+statsCampeonato(100000)
+```
+[Source Code](src/Exercicio_13.py)
+
+### Resultados
+	Nº Jogadas      Artimanhas      Bomba           Caramelo        Diluvio
+	100             3.00%           24.00%          22.00%          51.00%
+	1000            4.80%           20.30%          24.70%          50.20%
+	10000           4.72%           20.39%          24.46%          50.43%
+	100000          4.98%           20.02%          25.20%          49.80%
+
+
+X: De não sair 6 em 4 jogadas 
+$P(X) = \frac{5}{6}*\frac{5}{6}*\frac{5}{6}*\frac{5}{6}=0.4822 \Leftrightarrow48.22\%$
+Logo a probabilidade de sair pelo menos um 6 em 4 jogadas é de: $1-P(X) = 1-0.4822=0.5178 \Leftrightarrow51.78\%$ 
+Mais uma vez quanto maior o numero mais se aproxima do valor teórico.
