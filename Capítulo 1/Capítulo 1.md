@@ -290,7 +290,7 @@ estatistica(100000)
 X: De não sair 6 em 4 jogadas 
 $P(X) = \frac{5}{6}*\frac{5}{6}*\frac{5}{6}*\frac{5}{6}=0.4822 \Leftrightarrow48.22\%$
 Logo a probabilidade de sair pelo menos um 6 em 4 jogadas é de: $1-P(X) = 1-0.4822=0.5178 \Leftrightarrow51.78\%$ 
-Mais uma vez quanto maior o numero mais se aproxima do valor teorico.
+Mais uma vez quanto maior o numero mais se aproxima do valor teórico.
 
 ## Exercício 12
 ``` python
@@ -341,6 +341,6 @@ statsCampeonato(100000)
 
 
 X: De não sair 6 em 4 jogadas 
-$P(X) = \frac{5}{6}*\frac{5}{6}*\frac{5}{6}*\frac{5}{6}=0.4822 \Leftrightarrow48.22\%$
+$P(X) = \frac{5}{6}\times\frac{5}{6}\times\frac{5}{6}\times\frac{5}{6}=0.4822 \Leftrightarrow48.22\%$
 Logo a probabilidade de sair pelo menos um 6 em 4 jogadas é de: $1-P(X) = 1-0.4822=0.5178 \Leftrightarrow51.78\%$ 
 Mais uma vez quanto maior o numero mais se aproxima do valor teórico.
