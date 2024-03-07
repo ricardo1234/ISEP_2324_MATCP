@@ -2,6 +2,7 @@
 ```
 - [Teórica](https://moodle.isep.ipp.pt/pluginfile.php/366720/mod_resource/content/1/CAP%C3%8DTULO%203_MATCP_LEI_2023_2024.pdf)
 - [Exercicios](https://moodle.isep.ipp.pt/pluginfile.php/366721/mod_resource/content/1/Exercicios_MATCP_Capitulo_3_LEI_2023_24.pdf)
+- [DISTRIBUIÇÃO BINOMIAL](./Distribuição%20Binomial/DISTRIBUIÇÃO%20BINOMIAL.md)
 
 ## VARIAVEIS ALEATÓRIAS DISCRETAS
 ### Exercício 1
@@ -130,50 +131,7 @@ $E(x^2) = o^2 \times 0.1 + 1^2 \times 0.35 + 2^2 \times 0.25 + 3^2 \times 0.15 +
 $var(X) = E(x^2) - \mu^2 = 5.55 - 1.95^2 = 1.75$
 
 
-## DISTRIBUIÇÃO BINOMIAL
 
-### Exercício 11
-
-X: Número de motores a funcionar em 4.
-$X \sim Bi(n,p)$
-$n = 4$
-$p = 0.99$
-$P(X  \ge 2) \ - P(X \lt 2) = 1- P(x \le 1) \simeq 0.999996$
-
-``` python
-from scipy import stats
-n = 4
-p = 0.99
-x = 1
-print(f"A probabilidade de x <= 1 : {stats.binom.cdf(x, n, p):.6f}")
-print(f"A probabilidade de x > 1 : {1 - stats.binom.cdf(x, n, p):.6f}")
-```
-[Source Code](src/Exercicio_11.py)
-	A probabilidade de x <= 1 : 0.000004
-	A probabilidade de x > 1 : 0.999996
-
-### Exercício 13
-
-#### 13.1) A percentagem de lotes que são vendidos sem inspeção de todos os elementos.
-
-X: Número de componentes defeituosos em 6 ao acaso.
-$X \sim Bi(n,p)$
-$n = 6$
-$p = 0.04$
-$P(X = 0) = 78.3\%$
-
-``` python
-from scipy import stats
-n = 6
-p = 0.04
-x = 0
-print(f"A probabilidade de x = 0 : {(stats.binom.pmf(x, n, p)*100):.1f}%")
-```
-[Source Code](src/Exercicio_13.py)
-	A probabilidade de x = 0 : 78.3%
-#### 13.2) A probabilidade de ser necessário uma inspeção total do lote.
-
-$P(X \ge 1) = \ - P(X = 0) = 1 - 0.783 \sim 0.217 \sim 0.2\%$
 
 ## DISTRIBUIÇÃO DE POISSON
 ### Exercício 24
@@ -213,3 +171,90 @@ print((1-p_le1)/(1-p0))
 	A probabilidade de x <= 1 : 0.736
 	A probabilidade de x > 1 : 0.264 
 	0.41802329313067355
+### Exercício 25
+
+#### 25.1) Calcule a probabilidade de, num dado dia, se enviar veículos para outro parque. 
+
+X: Número de veículos que chega a um parque em 1 dia.
+$X \sim Po(\lambda)$
+$\lambda = 2$
+$P(X \gt 3) = 1 - P(X \le 3) = 1-0.8571 = 0.1429$
+
+``` python
+from scipy import stats
+n = 3
+media = 2
+p_le3 = stats.poisson.cdf(n, media)
+print(f"A probabilidade de x <= 3 = {p_le3:.4f}")
+print(f"A probabilidade de x > 3 = {(1 - p_le3):.4f}")
+```
+[Source Code](src/Exercicio_25.py)
+	A probabilidade de x <= 3 = 0.8571
+	A probabilidade de x > 3 = 0.1429
+
+#### 25.2) Para permitir recolher todos os veículos que chegarem em pelo menos 98% dos dias, as instalações devem ser aumentadas para comportar, no mínimo, quantos veículos?
+
+Y: Número de veículos recolhidos no parque.
+$Y \sim Po(\lambda)$
+$\lambda = 2$
+$P(Y \le n) \ge 0.98 \Leftrightarrow F(n) \ge 0.98 \Leftrightarrow n \ge F^{-1}(0,98) \Leftrightarrow F^{-1}(0,98) = 5$
+
+``` python
+media = 2
+p = 0.98
+n_minimo = stats.poisson.ppf(p, media)
+print(f"O numero minimo e de {n_minimo:.0f}")
+```
+[Source Code](src/Exercicio_25.py)
+	O numero mínimo e de 5
+
+### Exercício 28
+
+$$
+f(x) = 
+\left\{
+\begin{array}{c}
+ 0 , x \notin IN_0 \\
+\frac{\lambda^x}{x!}e^{-\lambda} , x \in IN_0
+\end{array} 
+\right.
+
+$$
+#### 28.1) Calcule o número médio de avarias que ocorrem, por hora, no dispositivo referido.
+
+X: Número de avarias por hora.
+$X \sim Po(\lambda)$
+$P(X = 1) = P(X = 2)$
+$\frac{\lambda^1}{1!}e^{-\lambda} = \frac{\lambda^2}{2!}e^{-\lambda}$
+$\Leftrightarrow \lambda = 2$
+#### 28.2) Qual a probabilidade de que nenhum deles avarie num período de 15 minutos?
+
+Y: Número dispositivos que avariam em 5, ao longo de 15 minutos.
+Z: Número de avarias em 15 minutos
+$X \sim Bi(n,p)$
+$n = 5$
+$p = P(Z \ge 1) = 0.393$
+
+``` python
+p = 0.393
+n = 5
+x = 0
+print(f"A probabilidade de x = 0 : {(stats.binom.pmf(x, n, p)):.3f}")
+```
+[Source Code](src/Exercicio_28.py)
+	A probabilidade de x = 0 : 0.082
+	
+$Z \sim Po(\lambda)$
+$\lambda = 2\times\frac{1}{4} = 0.5$
+
+``` python
+from scipy import stats
+n = 0
+media = 0.5
+p0 = stats.poisson.pmf(n, media)
+print(f"A probabilidade de x = 0 : {p0:.3f}")
+print(f"A probabilidade de x > 0 : {(1 - p0):.3f}")
+```
+[Source Code](src/Exercicio_28.py)
+	A probabilidade de x = 0 : 0.607
+	A probabilidade de x > 0 : 0.393
