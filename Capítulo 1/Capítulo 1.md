@@ -242,7 +242,7 @@ testGame(1000)
 testGame(10000)
 testGame(100000)
 ```
-[Source Code](src/Exercicio_11.py)
+[Source Code](Capítulo%201/src/Exercicio_11.py)
 ### Resultados
 	O numero de caras foi 6 que corresponde a 60.00%
 	O numero de caras foi 47 que corresponde a 47.00%
@@ -330,7 +330,7 @@ statsCampeonato(1000)
 statsCampeonato(10000)
 statsCampeonato(100000)
 ```
-[Source Code](src/Exercicio_13.py)
+[Source Code](Capítulo%201/src/Exercicio_13.py)
 
 ### Resultados
 	Nº Jogadas      Artimanhas      Bomba           Caramelo        Diluvio

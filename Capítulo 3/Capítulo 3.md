@@ -1,8 +1,12 @@
 ```table-of-contents
 ```
-- [Teórica](https://moodle.isep.ipp.pt/pluginfile.php/366720/mod_resource/content/1/CAP%C3%8DTULO%203_MATCP_LEI_2023_2024.pdf)
+- [Teórica](https://moodle.isep.ipp.pt/pluginfile.php/368688/mod_resource/content/1/CAP%C3%8DTULO%203_MATCP_LEI_2023_2024_V2.pdf)
 - [Exercicios](https://moodle.isep.ipp.pt/pluginfile.php/366721/mod_resource/content/1/Exercicios_MATCP_Capitulo_3_LEI_2023_24.pdf)
 - [DISTRIBUIÇÃO BINOMIAL](./Distribuição%20Binomial/DISTRIBUIÇÃO%20BINOMIAL.md)
+- [DISTRIBUIÇÃO POISSON](./Distribuição%20Poisson/DISTRIBUIÇÃO%20POISSON.md)
+- [DISTRIBUIÇÃO UNIFORME](./Distribuição%20Uniforme/DISTRIBUIÇÃO%20UNIFORME.md)
+- [DISTRIBUIÇÃO EXPONENCIAL](./Distribuição%20Exponencial/DISTRIBUIÇÃO%20EXPONENCIAL.md)
+- [DISTRIBUIÇÃO NORMAL](./Distribuição%20Normal/DISTRIBUIÇÃO%20NORMAL.md)
 
 ## VARIAVEIS ALEATÓRIAS DISCRETAS
 ### Exercício 1
@@ -133,128 +137,3 @@ $var(X) = E(x^2) - \mu^2 = 5.55 - 1.95^2 = 1.75$
 
 
 
-## DISTRIBUIÇÃO DE POISSON
-### Exercício 24
-
-#### 24.1) Poder pescar-se pelo menos um peixe.
-
-$100 dm^3 = 0.1 m^3$
-X: Número de peixes pescados em $0.1m^3$.
-$X \sim Po(\lambda)$
-$\lambda = 1$
-$P(X \ge 1) = 1 - P(X = 0) = 1-0.368 = 0.632$
-
-``` python
-from scipy import stats
-n = 0
-media = 1
-p0 = stats.poisson.pmf(n, media)
-print(f"A probabilidade de x = 0 : {p0:.3f}")
-print(f"A probabilidade de x > 0 : {(1 - p0):.3f}")
-```
-[Source Code](src/Exercicio_24.py)
-	A probabilidade de x = 0 : 0.368
-	A probabilidade de x > 0 : 0.632 
-
-#### 24.2) Poder pescar-se mais de um peixe, quando lá existe pelo menos um.
-
-$P(X \gt 1 | X \ge 1) = \frac{P(X \gt 1\space \cap\space X \ge 1)}{P(X \ge 1)} = \frac{P(X \gt 1)}{P(X \ge 1)} = \frac{1 - P(X \le 1)}{P(x \ge 1)} = \frac{0.264}{0.632} = 0.418$
-
-``` python
-n2 = 1
-p_le1 = stats.poisson.cdf(n2, media)
-print(f"A probabilidade de x <= 1 : {p_le1:.3f}")
-print(f"A probabilidade de x > 1 : {(1-p_le1):.3f}")
-print((1-p_le1)/(1-p0))
-```
-[Source Code](src/Exercicio_24.py)
-	A probabilidade de x <= 1 : 0.736
-	A probabilidade de x > 1 : 0.264 
-	0.41802329313067355
-### Exercício 25
-
-#### 25.1) Calcule a probabilidade de, num dado dia, se enviar veículos para outro parque. 
-
-X: Número de veículos que chega a um parque em 1 dia.
-$X \sim Po(\lambda)$
-$\lambda = 2$
-$P(X \gt 3) = 1 - P(X \le 3) = 1-0.8571 = 0.1429$
-
-``` python
-from scipy import stats
-n = 3
-media = 2
-p_le3 = stats.poisson.cdf(n, media)
-print(f"A probabilidade de x <= 3 = {p_le3:.4f}")
-print(f"A probabilidade de x > 3 = {(1 - p_le3):.4f}")
-```
-[Source Code](src/Exercicio_25.py)
-	A probabilidade de x <= 3 = 0.8571
-	A probabilidade de x > 3 = 0.1429
-
-#### 25.2) Para permitir recolher todos os veículos que chegarem em pelo menos 98% dos dias, as instalações devem ser aumentadas para comportar, no mínimo, quantos veículos?
-
-Y: Número de veículos recolhidos no parque.
-$Y \sim Po(\lambda)$
-$\lambda = 2$
-$P(Y \le n) \ge 0.98 \Leftrightarrow F(n) \ge 0.98 \Leftrightarrow n \ge F^{-1}(0,98) \Leftrightarrow F^{-1}(0,98) = 5$
-
-``` python
-media = 2
-p = 0.98
-n_minimo = stats.poisson.ppf(p, media)
-print(f"O numero minimo e de {n_minimo:.0f}")
-```
-[Source Code](src/Exercicio_25.py)
-	O numero mínimo e de 5
-
-### Exercício 28
-
-$$
-f(x) = 
-\left\{
-\begin{array}{c}
- 0 , x \notin IN_0 \\
-\frac{\lambda^x}{x!}e^{-\lambda} , x \in IN_0
-\end{array} 
-\right.
-
-$$
-#### 28.1) Calcule o número médio de avarias que ocorrem, por hora, no dispositivo referido.
-
-X: Número de avarias por hora.
-$X \sim Po(\lambda)$
-$P(X = 1) = P(X = 2)$
-$\frac{\lambda^1}{1!}e^{-\lambda} = \frac{\lambda^2}{2!}e^{-\lambda}$
-$\Leftrightarrow \lambda = 2$
-#### 28.2) Qual a probabilidade de que nenhum deles avarie num período de 15 minutos?
-
-Y: Número dispositivos que avariam em 5, ao longo de 15 minutos.
-Z: Número de avarias em 15 minutos
-$X \sim Bi(n,p)$
-$n = 5$
-$p = P(Z \ge 1) = 0.393$
-
-``` python
-p = 0.393
-n = 5
-x = 0
-print(f"A probabilidade de x = 0 : {(stats.binom.pmf(x, n, p)):.3f}")
-```
-[Source Code](src/Exercicio_28.py)
-	A probabilidade de x = 0 : 0.082
-	
-$Z \sim Po(\lambda)$
-$\lambda = 2\times\frac{1}{4} = 0.5$
-
-``` python
-from scipy import stats
-n = 0
-media = 0.5
-p0 = stats.poisson.pmf(n, media)
-print(f"A probabilidade de x = 0 : {p0:.3f}")
-print(f"A probabilidade de x > 0 : {(1 - p0):.3f}")
-```
-[Source Code](src/Exercicio_28.py)
-	A probabilidade de x = 0 : 0.607
-	A probabilidade de x > 0 : 0.393

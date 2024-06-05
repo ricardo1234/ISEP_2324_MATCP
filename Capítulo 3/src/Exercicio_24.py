@@ -1,16 +1,13 @@
-from scipy import stats
+from PoissonExtension import PoissonExtension
 
-n = 0
-media = 1
+mystats = PoissonExtension(mean=1)
 
 #24.1
-p0 = stats.poisson.pmf(n, media)
-print(f"A probabilidade de x = 0 : {p0:.3f}")
-print(f"A probabilidade de x > 0 : {(1 - p0):.3f}")
+print(f"A probabilidade de x = 0 : {mystats.Equal(0):.3f}")
+print(f"A probabilidade de x > 0 : {(mystats.Greater(0)):.3f}")
 
 #24.2
-n2 = 1
-p_le1 = stats.poisson.cdf(n2, media)
-print(f"A probabilidade de x <= 1 : {p_le1:.3f}")
-print(f"A probabilidade de x > 1 : {(1-p_le1):.3f}")
-print((1-p_le1)/(1-p0))
+print(f"A probabilidade de x <= 1 : {mystats.LessOrEqual(1):.3f}")
+print(f"A probabilidade de x > 1 : {(mystats.Greater(1)):.3f}")
+
+print(f"{mystats.HappeningAfterAnother(mystats.Greater(1), mystats.GreaterOrEqual(1)):.3f}")

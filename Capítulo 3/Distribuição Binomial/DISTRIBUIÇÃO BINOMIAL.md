@@ -118,7 +118,7 @@ x = 1
 print(f"A probabilidade de x <= 1 : {stats.binom.cdf(x, n, p):.6f}")
 print(f"A probabilidade de x > 1 : {1 - stats.binom.cdf(x, n, p):.6f}")
 ```
-[Source Code](src/Exercicio_11.py)
+[Source Code](Capítulo%203/src/Exercicio_11.py)
 	A probabilidade de x <= 1 : 0.000004
 	A probabilidade de x > 1 : 0.999996
 
@@ -139,7 +139,7 @@ p = 0.04
 x = 0
 print(f"A probabilidade de x = 0 : {(stats.binom.pmf(x, n, p)*100):.1f}%")
 ```
-[Source Code](src/Exercicio_13.py)
+[Source Code](Capítulo%203/src/Exercicio_13.py)
 	A probabilidade de x = 0 : 78.3%
 #### 13.2) A probabilidade de ser necessário uma inspeção total do lote.
 
