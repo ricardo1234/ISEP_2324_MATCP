@@ -6,3 +6,4 @@
 - [Capítulo 3](/Capítulo%203/Capítulo%203.md)
 - 
 	
+Usar a pasta "exam" para o exame, instalar a extensão PDF viewer no pycharm

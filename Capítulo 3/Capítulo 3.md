@@ -2,11 +2,11 @@
 ```
 - [Teórica](https://moodle.isep.ipp.pt/pluginfile.php/368688/mod_resource/content/1/CAP%C3%8DTULO%203_MATCP_LEI_2023_2024_V2.pdf)
 - [Exercicios](https://moodle.isep.ipp.pt/pluginfile.php/366721/mod_resource/content/1/Exercicios_MATCP_Capitulo_3_LEI_2023_24.pdf)
-- [DISTRIBUIÇÃO BINOMIAL](./Distribuição%20Binomial/DISTRIBUIÇÃO%20BINOMIAL.md)
-- [DISTRIBUIÇÃO POISSON](./Distribuição%20Poisson/DISTRIBUIÇÃO%20POISSON.md)
-- [DISTRIBUIÇÃO UNIFORME](./Distribuição%20Uniforme/DISTRIBUIÇÃO%20UNIFORME.md)
-- [DISTRIBUIÇÃO EXPONENCIAL](./Distribuição%20Exponencial/DISTRIBUIÇÃO%20EXPONENCIAL.md)
-- [DISTRIBUIÇÃO NORMAL](./Distribuição%20Normal/DISTRIBUIÇÃO%20NORMAL.md)
+- [DISTRIBUIÇÃO BINOMIAL](DISTRIBUIÇÃO%20BINOMIAL.md)
+- [DISTRIBUIÇÃO POISSON](DISTRIBUIÇÃO%20POISSON.md)
+- [DISTRIBUIÇÃO UNIFORME](DISTRIBUIÇÃO%20UNIFORME.md)
+- [DISTRIBUIÇÃO EXPONENCIAL](DISTRIBUIÇÃO%20EXPONENCIAL.md)
+- [DISTRIBUIÇÃO NORMAL](DISTRIBUIÇÃO%20NORMAL.md)
 
 ## VARIAVEIS ALEATÓRIAS DISCRETAS
 ### Exercício 1
